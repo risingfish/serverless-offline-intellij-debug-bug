@@ -1,0 +1,23 @@
+service: aws-node-http-api-project
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: local
+
+functions:
+  app:
+    handler: src/index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+custom:
+  serverless-offline:
+    httpPort: 3000
+    host: 0.0.0.0
